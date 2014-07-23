@@ -1,0 +1,24 @@
+
+<div class="catch-container">
+	<img id="img" src="http://channeleyes.com/wp-content/uploads/2013/09/Product-Tour-Features-1920x500.jpg">
+	<%= link_to "Submit a Post", new_post_path, class: 'btn btn-warning' %>
+</div>
+
+<h1 class="col-md-offset-2">Posts</h1>
+
+
+<% @posts.in_groups_of(3,false) do |group| %>
+<div class="row">
+	<% group.each do |post| %>
+		<div class="col-md-3 post_wrapper">
+				 <p class="post_title">Title: <%= post.title  %></p>
+			 		<a href="<%= post_path(post)%>"> <img src="<%= post.source %>" class = "post_pic"></a>
+		</div>
+	<% end %>
+</div>
+<% end %>
+
+
+
+
+

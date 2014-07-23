@@ -1,0 +1,31 @@
+<div>
+<%= form_for(@post, html: {role: 'form'}) do |f| %>
+  
+  <% if @post.errors.any? %>
+
+    <div id="error_explanation">
+      <h4><%= pluralize(@post.errors.count, "error") %> prohibited this product from being saved:</h4>
+
+      <ul>
+      <% @post.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+    <% end %>
+    <hr>
+    <% end %>
+      </ul>
+
+ 	<div class="field form-group">
+    <%= f.label :title, "Title", :class=>"label label-primary" %><br><br>
+    <%= f.text_field :title%> 
+  </div>
+	<div class="field form-group">
+    <%= f.label :source, "Source", :class=>"label label-primary" %><br><br>
+    <%= f.text_field :source %>
+  </div>
+  <br>
+  <div class="actions">
+    <button type="submit" class="btn btn-warning">Create Post
+    </button>
+  </div>
+<%end %>
+</div>

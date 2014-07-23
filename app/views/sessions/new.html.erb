@@ -1,0 +1,31 @@
+
+
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-8 text-center">
+			<h1>Log In</h1>
+			<hr>
+			
+			<%= form_tag(sessions_path, { role:"form" }) do %>
+
+				<div class="field form-group">
+				 	<%= label_tag :email, "Email", :class=>"label label-primary" %><br><br>
+				 	<%=text_field_tag :email, params[:email] %>
+				</div>
+				<div class= "field form-group">
+					<%= label_tag :password, "Password", :class => "label label-primary" %><br><br>
+					<%= password_field_tag :password %>
+				</div>
+				<div class="actions form-group">
+					<br>
+					 <button type="submit" class="btn btn-warning">Submit</button>
+				</div>
+			<% end %>
+		</div>
+		<div class="col-md-4 text-center">
+				<img src="http://placehold.it/350x500">
+		</div>
+	</div>
+</div>
+
