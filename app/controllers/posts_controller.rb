@@ -5,6 +5,11 @@ class PostsController < ApplicationController
 
   def show
     @post=Post.find(params[:id])
+    if current_user
+      @comment = @post.comments.build
+      # @comment = Comment.new( :post_id => @post.id )
+    end
+
   end
 
   def new
@@ -24,6 +29,7 @@ class PostsController < ApplicationController
   end
 
   def update
+    @comment.points += + 1
   end
 
   def destroy

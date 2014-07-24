@@ -7,18 +7,38 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div>
-<%= render "layouts/nav" %>
-</div>
+	<div>
+		<%= render "layouts/nav" %>
+	</div>
 
-<% if flash[:notice] %>
-    <p id="notice"><%= flash[:notice] %></p>
-<% end %>
-<% if flash[:alert] %>
-	<p id="alert"><%= flash[:alert] %></p>
-<% end %>
+	<div class="catch-container">
+	<img id="img" src="http://channeleyes.com/wp-content/uploads/2013/09/Product-Tour-Features-1920x500.jpg">
+	<%= link_to "Submit a Post", new_post_path, class: 'btn btn-warning btn-sm' %>
+	</div>
 
-<%= yield %>
+	<div class="row">
+		<div class="col-md-9"
+			<% if flash[:notice] %>
+			    <p id="notice"><%= flash[:notice] %></p>
+			<% end %>
+			<% if flash[:alert] %>
+				<p id="alert"><%= flash[:alert] %></p>
+			<% end %>
+
+			<%= yield %>
+		</div>
+
+		<div class="col-md-3">
+			<div class = "nav nav-pills nav-stacked">
+				<ul>
+					<% Category.all.each do |c| %>
+						<li><%= c.name %></li>
+						<% end %>
+				</ul>
+			</div>
+		</div>
+
+	</div>
 
 </body>
 </html>

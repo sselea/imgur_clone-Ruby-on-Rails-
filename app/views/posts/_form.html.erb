@@ -1,30 +1,36 @@
 <div>
-<%= form_for(@post, html: {role: 'form'}) do |f| %>
+<%= form_for(@post, html: {class: 'form-horizontal',role: 'form'}) do |f| %>
   
   <% if @post.errors.any? %>
 
     <div id="error_explanation">
       <h4><%= pluralize(@post.errors.count, "error") %> prohibited this product from being saved:</h4>
-
       <ul>
-      <% @post.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-    <% end %>
-    <hr>
-    <% end %>
+        <% @post.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+         <hr>
       </ul>
+    </div>
+  <% end %>
+      
+
 
  	<div class="field form-group">
-    <%= f.label :title, "Title", :class=>"label label-primary" %><br><br>
-    <%= f.text_field :title%> 
+    <%= f.label :title, "Title", :class=>"col-sm-6" %>
+    <div class='col-sm-6'>
+      <%= f.text_field :title, :class => "form-control" %> 
+    </div>
   </div>
 	<div class="field form-group">
-    <%= f.label :source, "Source", :class=>"label label-primary" %><br><br>
-    <%= f.text_field :source %>
+    <%= f.label :source, "Source", :class=>"col-sm-6" %>
+    <div class='col-sm-6'>
+      <%= f.text_field :source,:class => "form-control" %>
+    </div>
   </div>
   <br>
   <div class="actions">
-    <button type="submit" class="btn btn-warning">Create Post
+    <button type="submit" class="btn btn-warning btn-sm">Create Post
     </button>
   </div>
 <%end %>
