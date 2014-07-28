@@ -1,6 +1,15 @@
 class PostsController < ApplicationController
+
   def index
-    @posts=Post.all
+    if params[:search]
+      @posts=Post.where("LOWER(title) LIKE LOWER(?)", "%#{params[:search]}%")
+    elsif params[:category_id]
+      @category=Category.find(params[:category_id])
+      @posts = @category.posts
+    else 
+      @posts=Post.all
+    end
+    @posts= @posts.page(params[:page])
   end
 
   def show
@@ -29,7 +38,6 @@ class PostsController < ApplicationController
   end
 
   def update
-    @comment.points += + 1
   end
 
   def destroy

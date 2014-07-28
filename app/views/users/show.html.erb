@@ -1,2 +1,13 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="container fluid user_info">
+	<div class="row">
+		<div class="col-md-5">
+			<%= image_tag current_user.avatar.profile.url, :class => "profile_img" %>
+		</div>
+		<div class="col-md-4">
+				<hr>
+				<h3> <%= current_user.user_name.capitalize %> Information </h3>
+				<p> <%= current_user.email %> </p>
+		</div>
+		<div class="col-md-3"></div>
+	</div>
+</div>

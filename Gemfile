@@ -43,5 +43,8 @@ gem "rb-readline"
 gem 'pry'
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass', '~> 3.2.0'
-
+gem 'carrierwave'
+gem 'rmagick'
+gem "kaminari"
+gem "bootstrap-kaminari-views"
 

@@ -1,6 +1,6 @@
 
 
-<%= form_for(@user, html: { class: 'form-horizontal',role: 'form'}) do |f| %>
+<%= form_for(@user, html: { multipart: true, class: 'form-horizontal',role: 'form'}) do |f| %>
   <% if @user.errors.any? %>
 
     <div id="error_explanation">
@@ -32,7 +32,7 @@
   </div>
   <div class="field form-group">
     <%= f.label :password,"Password",:class => "col-sm-6" %>
-    <div class="col-md-6">
+    <div class="col-sm-6">
         <%= f.password_field :password,:class => "form-control" %>
     </div>
   </div>
@@ -42,8 +42,13 @@
         <%= f.password_field :password_confirmation,:class => "form-control" %>
     </div>
   </div>
+
+  <div class="field form-group">
+    <%= f.label :avatar,"Image",:class => "col-sm-6" %>
+    <%= f.file_field :avatar,  :class => "col-sm-6" %>
+  </div>
   <br>
-  <div class="actions">
+  <div class="actions col-sm-12">
     <button type="submit" class="btn btn-warning btn-sm">Create User</button>
   </div>
 

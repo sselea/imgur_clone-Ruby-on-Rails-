@@ -16,25 +16,30 @@
 	<%= link_to "Submit a Post", new_post_path, class: 'btn btn-warning btn-sm' %>
 	</div>
 
-	<div class="row">
-		<div class="col-md-9"
-			<% if flash[:notice] %>
-			    <p id="notice"><%= flash[:notice] %></p>
-			<% end %>
-			<% if flash[:alert] %>
-				<p id="alert"><%= flash[:alert] %></p>
-			<% end %>
+	<div class="container-fluid">
 
-			<%= yield %>
-		</div>
+		<div class="row">
 
-		<div class="col-md-3">
-			<div class = "nav nav-pills nav-stacked">
-				<ul>
-					<% Category.all.each do |c| %>
-						<li><%= c.name %></li>
-						<% end %>
-				</ul>
+			<div class="col-md-2 sidebar">
+					
+						<ul class="nav nav-pills nav-stacked">
+							<% counter= 0 %>
+							<% Category.all.each do |c| %>
+								<% counter += 1  %>
+								<li><a class="sidebar_links" href="/posts?category_id=<%=counter%>"><%= c.name %> </a></li>
+							<% end %>
+						</ul>
+			
+			</div>
+
+			<div class="col-md-10 ">
+					<% if flash[:notice] %>
+					    <p id="notice"><%= flash[:notice] %></p>
+					<% end %>
+					<% if flash[:alert] %>
+						<p id="alert"><%= flash[:alert] %></p>
+					<% end %>
+					<%= yield %>
 			</div>
 		</div>
 
