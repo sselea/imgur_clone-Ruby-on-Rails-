@@ -28,10 +28,16 @@
       <%= f.text_field :source,:class => "form-control" %>
     </div>
   </div>
+
+  <div class="field form-group">
+    <%=f.label :category_id, "Category", :class => "col-sm-6" %>
+    <div class= "col-sm-6">
+      <%=collection_select(:post, :category_id, Category.all, :id, :name, {:prompt=>true}, {:class => "form-control"})  %>
+    </div>
+  </div>
   <br>
-  <div class="actions">
-    <button type="submit" class="btn btn-warning btn-sm">Create Post
-    </button>
+  <div class="actions form-group">
+    <button type="submit" class="btn btn-warning btn-sm">Create Post </button>
   </div>
 <%end %>
 </div>

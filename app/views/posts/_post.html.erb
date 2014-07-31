@@ -1,9 +1,9 @@
 
 <% @posts.in_groups_of(3,false) do |group| %>
-<div class="row">
+<div class="row container_row">
 	<% group.each do |post| %>
-		<div class="col-md-3 post_wrapper">
-				 <p class="post_title">Title: <%= post.title  %></p>
+		<div class="col-md-3 post_wrapper text-center">
+				 <p class="post_title"><%= post.title  %></p>
 			 		<a href="<%= post_path(post)%>"> <img src="<%= post.source %>" class = "post_pic"></a>
 		</div>
 	<% end %>
@@ -14,7 +14,7 @@
 	<div class="row">
 		<div class= "col-md-4"></div>
 		<div class="col-md-4"></div>
-			<div class="col-md-4 text-right">
+			<div class="col-md-4 text-right pagination1">
 				<%= paginate @posts, theme: "twitter-bootstrap-3" %>
 			</div>
 	</div>

@@ -7,43 +7,58 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-	<div>
-		<%= render "layouts/nav" %>
-	</div>
+	<main>
+		<div>
+			<%= render "layouts/nav" %>
+		</div>
 
-	<div class="catch-container">
-	<img id="img" src="http://channeleyes.com/wp-content/uploads/2013/09/Product-Tour-Features-1920x500.jpg">
-	<%= link_to "Submit a Post", new_post_path, class: 'btn btn-warning btn-sm' %>
-	</div>
+		<div class="catch-container">
+		<%= image_tag("header.jpg", :class => "catch_img")%>
+		<!-- <img id="img" src="http://channeleyes.com/wp-content/uploads/2013/09/Product-Tour-Features-1920x500.jpg"> -->
+		<%= link_to "Submit a Post", new_post_path, class: 'btn btn-primary btn-sm' %>
+		</div>
 
-	<div class="container-fluid">
+		<div class="container-fluid">
 
-		<div class="row">
+			<div class="row">
 
-			<div class="col-md-2 sidebar">
-					
-						<ul class="nav nav-pills nav-stacked">
-							<% counter= 0 %>
-							<% Category.all.each do |c| %>
-								<% counter += 1  %>
-								<li><a class="sidebar_links" href="/posts?category_id=<%=counter%>"><%= c.name %> </a></li>
-							<% end %>
-						</ul>
-			
+				<div class="col-md-2">
+
+							<div class="sidebar col-md-9 col-md-offset-2 ">	
+								<ul class="nav nav-pills nav-stacked">
+									<% counter= 0 %>
+									<% Category.all.each do |c| %>
+										<% counter += 1  %>
+										<li><a class="sidebar_links" href="/posts?category_id=<%=counter%>"><%= c.name %> </a></li>
+									<% end %>
+								</ul>
+							</div>
+
+							<div class="col-md-3"></div>
+				</div>
+
+
+				<div class="col-md-10">
+						<% if flash[:notice] %>
+						    <p id="notice"><%= flash[:notice] %></p>
+						<% end %>
+						<% if flash[:alert] %>
+							<p id="alert"><%= flash[:alert] %></p>
+						<% end %>
+						<%= yield %>
+				</div>
 			</div>
 
-			<div class="col-md-10 ">
-					<% if flash[:notice] %>
-					    <p id="notice"><%= flash[:notice] %></p>
-					<% end %>
-					<% if flash[:alert] %>
-						<p id="alert"><%= flash[:alert] %></p>
-					<% end %>
-					<%= yield %>
+		</div>
+	</main>
+
+		<div class="navbar navbar-inverse navbar-bottom">
+			<div class="container">
+					<p class="navbar-text pull-left "> Site Built By: Sebastian Selea </p>		
+					<p class= "navbar-text pull-right "> Contact Us: bitmakerlabs@gmail.com</p>
 			</div>
 		</div>
 
-	</div>
 
-</body>
+	</body>
 </html>
