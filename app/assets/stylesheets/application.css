@@ -16,6 +16,10 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+.new_sessions_row{
+	margin-top:6em;
+}
+
 body {
 	background-color:black;
 	color:grey;
