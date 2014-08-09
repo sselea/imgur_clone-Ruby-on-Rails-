@@ -3,8 +3,13 @@
 <div class="row container_row">
 	<% group.each do |post| %>
 		<div class="col-md-3 post_wrapper text-center">
-				 <p class="post_title"><%= post.title  %></p>
+				<% if /jpg/.match(post.source) %>
+					<p class="post_title"><%= post.title  %></p>
 			 		<a href="<%= post_path(post)%>"> <img src="<%= post.source %>" class = "post_pic"></a>
+			 	<% else %>
+					<p class="post_title"><a href="<%= post.source %>"> <%= post.title %></a></p>
+					<a href="<%= post_path(post) %>"> <%= image_tag("reddit_header1.jpg", :class => "post_pic1" )%></a>
+			 	<% end %>
 		</div>
 	<% end %>
 </div>

@@ -1,10 +1,16 @@
 <div class="container-fluid">
 	<div class="row">
-		<div class="col-md-4">
+		<div class="col-md-3">
 		</div>
 		<div class="col-md-4 post_wrapper_in_show text-center">
-			<p class="post_title"><%= @post.title %> </p>
-			<img src="<%= @post.source %>" class="post_pic">
+			
+			<% if /jpg/.match(@post.source) %>
+				<p class="post_title"> <%=@post.title%></p>
+				<img src="<%= @post.source %>" class="post_pic">
+			<% else %>
+				<p class="post_title"><a href="<%= @post.source%>"</a> <%= @post.title %> : Article </p>
+				<%= image_tag("reddit_header1.jpg", :class => "post_pic")%>
+			<% end %>
 		</div>
 		<div class="col-md-4">
 		</div>
@@ -12,88 +18,142 @@
 </div>
 
 <div class= "row container-fluid text-center">
-	<div class="col-md-3"></div>
+	<div class="col-md-2"></div>
 	<div class="col-md-6 all_comments_container">
 
 			
-				<% @post.comments.order(points: :desc).each do |comment| %>
+				<% @parent_comments.each do |comment| %>
 
-					
-
-					<% if comment.user %>
-
-						<div class="comment_container text-left">
-						
-							<div class="row">
-								<div class="col-md-6 col-sm-12">
-											<div class="comment_description"><%= comment.description %></div>
-											<span class="added_on"> by <%= comment.user.email %> added on: <%= comment.created_at %></span>
-								</div>	
-
-								<div class="col-md-3">
-									<div class="row">
-										<div class=" col-md-6 upvote_button">
-
-											<%= form_for [@post,comment] do |f| %>
-												<%= hidden_field_tag :vote, 1 %>
-												<%= f.submit ' + ', :class => "btn btn-sm btn-primary " %>
-											<% end %>
-										</div>
-
-										<div class=" col-md-6 downvote_button">
-											<%= form_for [@post,comment] do |f| %>
-												<%= hidden_field_tag :vote, -1 %>
-												<%= f.submit ' - ', :class => "btn btn-sm btn-primary " %>
-											<% end %>
-										</div>
-									</div>
-								</div>	
-
-								<div class= "col-md-1">
-									<p class="points"><%= comment.points %></p>
-								</div>
-
-								<div class= "col-md-2">
-									<button type="submit" class="btn btn-sm reply_button" data-comment-id="<%= comment.id %>" data-comment-description="<%= comment.description %>">Reply</button>
-								</div>
-							</div>
-
-						</div>
-
-						
-						<% comment.nested_comments.each_with_index do |nested_comment, indent_counter|%>
-
-							<% x = (indent_counter)/6  %>
-							<% if x % 2 == 0  %>
-								
-								<div class="row">
-
-									<div class="col-md-6 col-md-offset-<%=indent_counter + 1 %> nested_comments">
-										<span class="nested_comment_text"><%=nested_comment.description %>
-									</div>
-									<div class="col-md-6"></div>
-								</div>
-
-							<% end %>
-
-							<% if x % 2 == 1 %>
-								
-									<div class="row">
-
-										<div class="col-md-6 col-md-offset-<%= 6 - (indent_counter - 5)  %> nested_comments">
-											<span class="nested_comment_text"><%= nested_comment.description %><%= indent_counter %> </span>
-										</div>
-										<div class="col-md-6"></div>
-									</div>
-						
-							<% end %>
 				
+					<% if comment.parent_id == nil %>
+
+						<% if comment.user %>
+						
+								<div class="comment_container text-left">
+								
+									<div class="row">
+										<div class="col-md-9 col-xs-7">
+													<div class="comment_description"><%= comment.description %> <span class="points"> (<%= comment.points %> Points) </span></div>
+													<span class="added_on"> by <%= comment.user.email %> added on: <%= comment.created_at %></span>
+										</div>	
+
+									
+
+										<% if current_user %>
+
+											<div class="col-md-1 col-xs-2">
+													<div class="upvote_button">
+														<%= form_for [@post,comment] do |f| %>
+															<%= hidden_field_tag :vote, 1 %>
+															<button type="submit" class="btn arrow btn-md">
+															<span class="glyphicon glyphicon-chevron-up"></span></button>
+														<% end %>
+													</div>
+
+													<div class="downvote_button">
+														<%= form_for [@post,comment] do |f| %>
+															<%= hidden_field_tag :vote, -1 %>
+															<button type="submit" class="btn btn-md arrow">
+															<span class="glyphicon glyphicon-chevron-down"></span></button>
+														<% end %>
+													</div>
+							
+											</div>	
+
+											<div class= "col-md-1 col-xs-1">
+												<button type="submit" class="btn btn-sm reply_button comment_reply" data-comment-id="<%= comment.id %>" data-comment-description="<%= comment.description %>">Reply</button>
+											</div>
+										<% end %>
+
+									</div>
+
+								</div>
+
 						<% end %>
 
 					<% end %>
+
+						<% comment.nested_comments.order(points: :desc).each do |nested_comment|%>
+
+							
+									<div class="row nested_comment_row">
+		
+
+											<div class="col-md-7 col-md-offset-1 col-xs-12 nested_comments">
+												<span class="nested_comment_text"><%=nested_comment.description %> <span class="points"> (<%= nested_comment.points %> Points) </span></span>
+											</div>
+
+								
+											<% if current_user %>
+												<div class="col-md-1 col-xs-2">
+
+														<div class="upvote_button">
+															<%= form_for [@post,nested_comment] do |f| %>
+																<%= hidden_field_tag :vote, 1 %>
+																<button type="submit" class="btn btn-sm arrow">
+																<span class="glyphicon glyphicon-chevron-up"></span></button>
+															<% end %>
+														</div>
+
+														<div class="downvote_button">
+															<%= form_for [@post,nested_comment] do |f| %>
+																<%= hidden_field_tag :vote, -1 %>
+																<button type="submit" class="btn  btn-sm  arrow">
+																<span class="glyphicon glyphicon-chevron-down"></span></button>
+															<% end %>
+														</div>
+
+												</div>
+
+												<div class= "col-md-1 col-xs-2">
+														<button type="submit" class="btn btn-sm reply_button comment_reply" data-comment-id="<%= nested_comment.id %>" data-comment-description="<%= nested_comment.description %>">Reply</button>
+												</div>
+											<% end %>
+									</div>	
+
+									<% nested_comment.nested_comments.order(points: :desc).each do |nested_comment2| %>
+
+											<div class="row nested_comment_row2">
+
+												<div class="col-md-6 col-md-offset-2 col-xs-7 col-xs-offset-3 nested_comments2">
+													<span class="nested_comment_text"><%=nested_comment2.description %><span class="points"> (<%= nested_comment2.points %> Points) </span></span>
+												</div>
+												
+												<% if current_user %>
+												<div class="col-md-1 col-xs-2">
+
+														<div class="upvote_button">
+															<%= form_for [@post,nested_comment2] do |f| %>
+																<%= hidden_field_tag :vote, 1 %>
+																<button type="submit" class="btn btn-sm arrow">
+																<span class="glyphicon glyphicon-chevron-up"></span></button>
+															<% end %>
+														</div>
+
+														<div class="downvote_button">
+															<%= form_for [@post,nested_comment2] do |f| %>
+																<%= hidden_field_tag :vote, -1 %>
+																<button type="submit" class="btn btn-sm arrow ">
+																<span class="glyphicon glyphicon-chevron-down"></span></button>
+															<% end %>
+														</div>
+
+												</div>
+												<% end %>
+
+
+										
+
+											</div>	
+									<% end %>
+
+
+						<% end %>
+					
 				<% end %>
-		</div>
-		<div class="col-md-3"></div>
+
+	</div>
+	<div class="col-md-3"></div>
 </div>
 
 
@@ -101,7 +161,7 @@
 <% if current_user %>
 
 	<div class="row container-fluid ">
-		<div class="col-md-4"></div>
+		<div class="col-md-3"></div>
 		<div class="col-md-4 text-center">
 			<%= form_for([@post,@comment], html: {class:"form-inline comment_form",role:"form"}) do |f| %>
 
@@ -118,7 +178,7 @@
 			    </div>
 			  <% end %>
 
-				<%= f.label :description, "Comment", :class => " comment_label " %>
+				<%= f.label :description, "Comment", :class => " comment_label" %>
 			  <div class="field form-group">
 			  <%= f.text_area :description, :class => "form-control" %>
 				</div>

@@ -6,22 +6,32 @@ class CommentsController < ApplicationController
   end
 
   def create
-    # Rails.logger.info params.inspect
-    
-    	@comment = @post.comments.build(comment_params)
-      @parent = Comment.find(params[:parent_id])
-      if @parent.nested_comments.count <= 9
+  
+      if params[:parent_id] != ""
+
+      	@comment = @post.comments.build(comment_params)
+        @parent = Comment.find(params[:parent_id])
       	@comment.points = 0
         @comment.parent_id= params[:parent_id]
       	@comment.user_id = current_user.id 
       	@comment.post_id = params[:post_id]
-      	if @comment.save 
-      		redirect_to post_path(@post)
-      	else 
-      		render "post/show"
-      	end
+        @comment.uv.push(current_user.id.to_s)
+        	if @comment.save 
+        		redirect_to post_path(@post)
+        	else 
+        		render "post/show"
+        	end
       else
-        redirect_to post_path(@post), :notice => "Maximum 10 comments per comment"
+        @comment = @post.comments.build(comment_params)
+        @comment.points = 0
+        @comment.user_id = current_user.id 
+        @comment.post_id = params[:post_id]
+        @comment.uv.push(current_user.id.to_s)
+        if @comment.save 
+          redirect_to post_path(@post)
+        else 
+          render "post/show"
+        end
       end
   
   end
@@ -33,11 +43,16 @@ class CommentsController < ApplicationController
 
   def update 
   	@comment = Comment.find(params[:id])
-  	@comment.points += params[:vote].to_i
+
+       if @comment.uv.include?(current_user.id.to_s)
+          flash[:notice] = "STOP CHEATING PUNK!"
+      else
+          @comment.uv.push(current_user.id.to_s)
+          @comment.points += params[:vote].to_i
+      end
   	
   	if @comment.save
   		#success
-  		flash[:notice] = "Nice vote!"
   		redirect_to post_path(@post)
   	else
   		#failure

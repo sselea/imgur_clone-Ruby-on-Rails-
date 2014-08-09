@@ -1,13 +1,14 @@
 <div class="container fluid user_info">
 	<div class="row">
-		<div class="col-md-5">
+		<div class="col-md-4">
 			<%= image_tag current_user.avatar.profile.url, :class => "profile_img" %>
 		</div>
 		<div class="col-md-4">
+				<h3> Profile Page </h3>
 				<hr>
-				<h3> <%= current_user.user_name.capitalize %> Information </h3>
-				<p> <%= current_user.email %> </p>
+				<p> User :  <%= current_user.user_name%> </p>
+				<p> Email Address : <%= current_user.email %> </p>
 		</div>
-		<div class="col-md-3"></div>
+		<div class="col-md-4"></div>
 	</div>
 </div>

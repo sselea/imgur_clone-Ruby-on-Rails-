@@ -12,6 +12,7 @@ class PostsController < ApplicationController
 
   def show
     @post=Post.find(params[:id])
+    @parent_comments = @post.comments.top
     if current_user
       @comment = @post.comments.build
       # @comment = Comment.new( :post_id => @post.id )

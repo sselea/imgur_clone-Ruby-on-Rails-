@@ -1,10 +1,17 @@
 
 
 <% if @category %>
-<h3 class="text-center"><%= @category.name%></h3>
+<h3 class="text-center category_name"><%= @category.name%></h3>
 <% else %>
-<h3 class="text-center">All</h3>
+<h3 class="text-center category_name">All</h3>
 <% end %>
+
+<div class="row search_bar_row">
+ <%= form_tag(posts_path, {method: :get, authentication: false, class: "navbar-form search_bar", role:"search", id:"search-form"}) do %>
+ 			<button type="submit" class="btn btn-primary btn-sm search_button">Search : </button>
+      <%= text_field_tag :search, params[:search], :class => "form-control" %>
+      <% end %>
+</div>
 
 <div id="posts">
 	<%= render "post" %>

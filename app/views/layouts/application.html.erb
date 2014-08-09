@@ -12,10 +12,10 @@
 			<%= render "layouts/nav" %>
 		</div>
 
-		<div class="catch-container">
-		<%= image_tag("header.jpg", :class => "catch_img")%>
-		<!-- <img id="img" src="http://channeleyes.com/wp-content/uploads/2013/09/Product-Tour-Features-1920x500.jpg"> -->
-		<%= link_to "Submit a Post", new_post_path, class: 'btn btn-primary btn-sm' %>
+		<div class=" col-md-12 catch-container">
+			<%= image_tag("laptop_header.jpg", :class => "catch_img")%>
+			<!-- <img id="img" src="http://channeleyes.com/wp-content/uploads/2013/09/Product-Tour-Features-1920x500.jpg"> -->
+			<%= link_to "Submit a Post", new_post_path, class: 'btn btn-primary btn-sm submit_post_btn' %>
 		</div>
 
 		<div class="container-fluid">
@@ -26,6 +26,7 @@
 
 							<div class="sidebar col-md-9 col-md-offset-2 ">	
 								<ul class="nav nav-pills nav-stacked">
+									<li><a class="sidebar_links" href="<%=posts_path%>"> All </a></li>
 									<% counter= 0 %>
 									<% Category.all.each do |c| %>
 										<% counter += 1  %>
@@ -39,12 +40,18 @@
 
 
 				<div class="col-md-10">
-						<% if flash[:notice] %>
-						    <p id="notice"><%= flash[:notice] %></p>
-						<% end %>
-						<% if flash[:alert] %>
-							<p id="alert"><%= flash[:alert] %></p>
-						<% end %>
+						<div class="row">
+							<div class="col-md-4"></div>
+							<div class="col-md-4">
+								<% if flash[:notice] %>
+								    <p id="notice"><%= flash[:notice] %></p>
+								<% end %>
+								<% if flash[:alert] %>
+									<p id="alert"><%= flash[:alert] %></p>
+								<% end %>
+							</div>
+							<div class="col-md-4"></div>
+						</div>
 						<%= yield %>
 				</div>
 			</div>
