@@ -104,7 +104,7 @@ ul{
 }
 
 .post_wrapper_in_show {
-	border-top: 2px solid #dddddd;
+	border-top: 2px solid #dddddd;	
 	margin:6em 0 1em;
 
 }
@@ -295,7 +295,7 @@ h3{
 	color:grey !important;
 }
 
-@media (max-width:900px) {
+@media (max-width:900px) and (max-device-width: 300px) {
 
 	#notice {
 		padding-top:3em;
