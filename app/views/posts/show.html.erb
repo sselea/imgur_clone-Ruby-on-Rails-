@@ -33,7 +33,7 @@
 								
 									<div class="row">
 										<div class="col-md-9 col-xs-7">
-													<div class="comment_description"><%= comment.description %> <span class="points"> (<%= comment.points %> Points) </span></div>
+													<div class="comment_description"><%= comment.description %> <span class="points"> (<%= comment.points %>:Points) </span></div>
 													<span class="added_on"> by <%= comment.user.email %> added on: <%= comment.created_at %></span>
 										</div>	
 
@@ -79,8 +79,8 @@
 									<div class="row nested_comment_row">
 		
 
-											<div class="col-md-7 col-md-offset-1 col-xs-12 nested_comments">
-												<span class="nested_comment_text"><%=nested_comment.description %> <span class="points"> (<%= nested_comment.points %> Points) </span></span>
+											<div class="col-md-7 col-md-offset-1 col-xs-6 nested_comments">
+												<span class="nested_comment_text"><%=nested_comment.description %><span class="points"> (<%= nested_comment.points %>:Points) </span></span>
 											</div>
 
 								
@@ -116,7 +116,7 @@
 											<div class="row nested_comment_row2">
 
 												<div class="col-md-6 col-md-offset-2 col-xs-7 col-xs-offset-3 nested_comments2">
-													<span class="nested_comment_text"><%=nested_comment2.description %><span class="points"> (<%= nested_comment2.points %> Points) </span></span>
+													<span class="nested_comment_text"><%=nested_comment2.description %><span class="points"> (<%= nested_comment2.points %>:Points) </span></span>
 												</div>
 												
 												<% if current_user %>
