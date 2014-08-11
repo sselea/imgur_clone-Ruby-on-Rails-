@@ -94,7 +94,7 @@ ul{
 }
 
 .post_wrapper{
-	margin:1.1em 3em 4em;
+	margin:1em 3em 4em;
 	box-shadow:0px 0px 40px 0px grey;
 	-webkit-transition: all 1s ease;
 }
@@ -297,6 +297,9 @@ h3{
 
 @media (max-width:900px)  {
 
+	.container_row{
+		margin-bottom:1em;
+	}
 	#notice {
 		padding-top:3em;
 		margin-left:2.7em;
