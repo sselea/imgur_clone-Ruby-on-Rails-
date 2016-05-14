@@ -10,9 +10,7 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require bootstrap
- *= require_tree .
- *= require_self
+
  */
 
 @import "bootstrap-sprockets";
@@ -25,6 +23,8 @@
 body {
 	background-color:black;
 	color:grey;
+	// background-image: url("websitebg.jpg");
+	background-size: 100%;
 }
 
 main {
@@ -40,11 +40,11 @@ ul{
 .field_with_errors {
   margin: 0;
   padding: 0;
-  display: inline; 
+  display: inline;
 }
 
 #sign_in_as{
-	margin:1.2em ;
+	// margin:1.2em ;
 }
 
 #img {
@@ -64,7 +64,7 @@ ul{
 }
 
 .navbar a:hover{
-	color:#428bca !important;
+	color:orange !important;
 }
 
 .catch-container {
@@ -94,17 +94,16 @@ ul{
 }
 
 .post_wrapper{
-	margin:1em 3em 4em;
-	box-shadow:0px 0px 40px 0px grey;
+	margin: 0em 3em,;
 	-webkit-transition: all 1s ease;
 }
 
 .post_wrapper:hover{
- -webkit-transform: scale(.95,.95);
+ -webkit-transform: scale(1.1,1.1);
 }
 
 .post_wrapper_in_show {
-	border-top: 2px solid #dddddd;	
+	border-top: 2px solid #dddddd;
 	margin:6em 0 1em;
 
 }
@@ -120,8 +119,11 @@ ul{
 }
 
 .navbar-brand {
-	border-right: 1px solid grey;
+	// border-right: 1px solid grey;
 	height:100%;
+	img.logo{
+		height: 25px;
+	}
 }
 
 .form-control {
@@ -134,7 +136,7 @@ ul{
 
 .comment_container {
 	border-bottom:1px solid #E68A00;
-	padding:1em;
+	padding:0em;
 }
 
 .comment_label{
@@ -147,7 +149,7 @@ ul{
 }
 
 .comment_description{
-	margin-top:1em;
+	margin-top:2em;
 }
 
 .upvote_button, .downvote_button {
@@ -176,11 +178,12 @@ ul{
 }
 
 .sidebar_links {
-	color:grey;
+	color:#CCC;
+	// text-shadow: 3px 3px 1px #286090;
 }
 
 a.sidebar_links:hover{
-	color: #428bca;
+	color: #cc7a00;
 	background-color:black !important;
 }
 
@@ -210,13 +213,14 @@ a.sidebar_links:hover{
 	}
 
 	.pagination .active a{
-		background-color:#428bca !important;
+		background-color:black !important;
 		border-color:black;
 		color:white;
 	}
 
-	.pagination .active a:hover {
+	.pagination a:hover {
 		border-color:#dddddd;
+		color:orange;
 	}
 
 	.page_links{
@@ -239,7 +243,7 @@ a.sidebar_links:hover{
 	}
 
 
-	
+
 	.comment_form{
 		margin-bottom:3em;
 	}
@@ -269,13 +273,15 @@ h3{
 }
 
 .nested_comments {
-	height:54px;
+	height:45px;
 	border-bottom:1px solid #428bca;
-	
+	padding-top: 0.2em;
+
 }
 
 .nested_comment_text {
 	display:block;
+	height:inherit;
 	margin-top:1em;
 }
 
@@ -301,8 +307,7 @@ h3{
 		margin-bottom:1em;
 	}
 	#notice {
-		padding-top:3em;
-		margin-left:2.7em;
+		margin-top: 50px;
 	}
 
 	.nested_comment_row {
@@ -312,7 +317,7 @@ h3{
 	.sidebar, .catch_img{
 		display:none;
 	}
-	
+
 	.post_wrapper{
 		margin:none;
 	}
@@ -353,7 +358,7 @@ h3{
 		margin:auto;
 		border:none;
 		margin-bottom:1em;
-		color:grey;	
+		color:grey;
 	}
 
 	.comment_label{
@@ -377,14 +382,20 @@ h3{
 	}
 
 	.nested_comments2{
-		border:none !important 	;	
+		border:none !important 	;
+		height:45px;
 	}
 
 	.category_name{
 		width:50%;
-		margin:auto !important;
-		text-align:center;
-	}; 
+		padding-left: 3.5em;
+	};
+}
+
+.category_name{
+	padding-left: 3.5em;
+	margin-top:1em;
+	margin-bottom:0;
 }
 
 
@@ -394,6 +405,7 @@ h3{
 
 .nested_comments2{
 	border-bottom:1px solid white;
+	height: 50px;
 }
 
 .submit_post_btn{
@@ -401,15 +413,9 @@ h3{
 }
 
 .nested_comment_row , .nested_comment_row2 {
-	margin-bottom: 1.5em;
-}
-
-
-.category_name {
-	margin-top:1em ;
-	margin-left: 7em;
 
 }
+
 
 .points {
 	font-size: .75em;
@@ -461,8 +467,37 @@ h3{
 	background-color:black;
 }
 
+.blah{
+	margin-top:4em;
+}
+
 #notice{
-	margin-top:2em;
+	position:fixed;
+	top:1.5em;
+	left:45%;
+	margin:auto;
 	color:orange;
-	font-size:1.5em;
+	font-size:1em;
+}
+
+.sign_up_div{
+	margin-top: 5em;
+}
+
+.pagination li a{
+	color:white;
+}
+
+.pagination{
+	width:500px;
+}
+
+.pagination1 {
+	float: none;
+	position:relative;
+	left:350px;
+}
+
+.pagination a:hover {
+	color:orange !important;
 }

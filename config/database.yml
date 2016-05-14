@@ -7,8 +7,8 @@
 default: &default
   encoding: unicode
   adapter: postgresql
-  username: reddit_development
-  password: reddit_development
+  username: postgres
+  password:
   pool: 5
   timeout: 5000
 

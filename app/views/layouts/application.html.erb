@@ -13,7 +13,7 @@
 			<%= render "layouts/nav" %>
 		</div>
 
-	
+
 
 		<div class="container-fluid">
 
@@ -21,9 +21,9 @@
 
 				<div class="col-md-2">
 
-							<div class="sidebar col-md-9 col-md-offset-2 ">	
+							<div class="sidebar col-md-9 col-md-offset-2 ">
 								<ul class="nav nav-pills nav-stacked">
-									<li><a class="sidebar_links" href="<%=posts_path%>"> All </a></li>
+									<li><a class="sidebar_links" href="<%=posts_path%>"> See All </a></li>
 									<% counter= 0 %>
 									<% Category.all.each do |c| %>
 										<% counter += 1  %>
@@ -40,12 +40,7 @@
 						<div class="row">
 							<div class="col-md-4"></div>
 							<div class="col-md-4">
-								<% if flash[:notice] %>
-								    <p id="notice"><%= flash[:notice] %></p>
-								<% end %>
-								<% if flash[:alert] %>
-									<p id="alert"><%= flash[:alert] %></p>
-								<% end %>
+
 							</div>
 							<div class="col-md-4"></div>
 						</div>
@@ -58,7 +53,7 @@
 
 		<div class="navbar navbar-inverse navbar-bottom">
 			<div class="container">
-					<p class="navbar-text pull-left "> Site Built By: Sebastian Selea </p>		
+					<p class="navbar-text pull-left "> Site Built By: Sebastian Selea </p>
 					<p class= "navbar-text pull-right "> Contact Us: bitmakerlabs@gmail.com</p>
 			</div>
 		</div>

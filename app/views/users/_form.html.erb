@@ -21,7 +21,7 @@
  	<div class="field form-group">
     <%= f.label :email,"Email",:class => "col-sm-6" %>
     <div class="col-sm-6">
-       <%= f.text_field :email, :class => "form-control" %> 
+       <%= f.text_field :email, :class => "form-control" %>
     </div>
   </div>
 	<div class="field form-group">
@@ -42,17 +42,9 @@
         <%= f.password_field :password_confirmation,:class => "form-control" %>
     </div>
   </div>
-
-  <div class="field form-group">
-    <%= f.label :avatar,"Image",:class => "col-sm-6" %>
-    <%= f.file_field :avatar,  :class => "col-sm-6 " %>
-  </div>
   <br>
   <div class="actions col-sm-12">
     <button type="submit" class="btn btn-warning btn-sm">Create User</button>
   </div>
 
 <%  end %>
-
-
-

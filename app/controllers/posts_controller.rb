@@ -4,7 +4,7 @@ class PostsController < ApplicationController
     if params[:category_id]
       @category=Category.find(params[:category_id])
       @posts = @category.posts
-    else 
+    else
       @posts=Post.all
     end
     @posts = @posts.page(params[:page])
@@ -26,12 +26,13 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    if @post.save 
+    @post.user_id = session[:user_id]
+    if @post.save
       redirect_to posts_path, :notice => "Post Saved"
     else
       render "new"
     end
-  end 
+  end
 
   def edit
   end
@@ -54,4 +55,3 @@ class PostsController < ApplicationController
     params.require(:post).permit(:title,:source,:category_id)
   end
 end
-
