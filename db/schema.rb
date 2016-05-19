@@ -43,11 +43,13 @@ ActiveRecord::Schema.define(version: 20140809165408) do
   end
 
   create_table "users", force: true do |t|
+    t.string   "picture"
     t.string   "email"
     t.string   "user_name"
     t.string   "password_digest"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "avatar"
   end
 
 end
